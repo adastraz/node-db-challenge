@@ -40,11 +40,19 @@ Demonstrate your understanding of this week's concepts by answering the followin
 
 - [ ] Explain the difference between `Relational Databases` and `SQL`.
 
+A database is a place where data is stored. A relational database has a key: value pair system. SQL allows for an admin to manipulate data that is recieved by the user
+
 - [ ] Why do tables need a `primary key`?
+
+To differentiate the items inside of the database. Give them something that is always unique to tell them apart
 
 - [ ] What is the name given to a table column that references the primary key on another table.
 
+Foreign key
+
 - [ ] What do we need in order to have a _many to many_ relationship between two tables.
+
+A bridge table
 
 ## Minimum Viable Product
 

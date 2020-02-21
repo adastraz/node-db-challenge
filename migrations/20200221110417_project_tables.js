@@ -3,7 +3,7 @@ exports.up = function(knex) {
     return knex.schema
         .createTable('projects', projects => {
             projects.increments()
-            projects.text('name').notNullable
+            projects.text('name').notNullable()
             projects.text('description')
             projects.boolean('is_completed').defaultTo(false)
         })
@@ -14,7 +14,7 @@ exports.up = function(knex) {
             tasks.boolean('is_completed').defaultTo(false)
             tasks.integer('project_id').unsigned().references('projects.id')
         })
-        .createTable('recources', resources => {
+        .createTable('resources', resources => {
             resources.increments()
             resources.text('name').notNullable()
             resources.text('description')

@@ -9,7 +9,7 @@ router.get('/:id/resources', (req, res) => {
   
     Tasks.findResources(id)
     .then(resources => {
-      if (recources.length) {
+      if (resources.length) {
         res.json(resources);
       } else {
         res.status(404).json({ message: 'Could not find resources for given task' })

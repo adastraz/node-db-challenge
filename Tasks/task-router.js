@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/:id/resources', (req, res) => {
     const { id } = req.params;
   
-    Schemes.findResources(id)
+    Tasks.findResources(id)
     .then(resources => {
       if (recources.length) {
         res.json(resources);
@@ -24,7 +24,7 @@ router.get('/:id/resources', (req, res) => {
 router.post('/:id/resources', (req, res) => {
     const { id } = req.params; 
 
-    Schemes.findById(id)
+    Tasks.findById(id)
     .then(resource => {
         if (resource) {
             Tasks.addResource(req.body, id)

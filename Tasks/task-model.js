@@ -1,9 +1,16 @@
 const db = require('../data/db-config')
 
 module.exports = {
-  findById,
-  addResource,
-  findResources
+    find,
+    findById,
+    addResource,
+    findResources,
+    remove,
+    update
+}
+
+function find(){
+    return db('tasks')
 }
 
 function findById(id){
@@ -22,4 +29,16 @@ function findResources(taskId){
 function addResource(resource, id){
     return db('resources')
         .insert({...resource, task_id: id})
+}
+
+function update(id, changes){
+    return db('tasks')
+        .where({ id })
+        .update(changes)
+}
+
+function remove(id){
+    return db('tasks')
+        .where({ id })
+        .del()
 }

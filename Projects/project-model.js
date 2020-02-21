@@ -1,13 +1,13 @@
 const db = require('../data/db-config')
 
 module.exports = {
-  add, 
-  addTask,
-  update,
-  remove,
-  findById,
-  findTasks,
-  find
+    add, 
+    addTask,
+    update,
+    remove,
+    findById,
+    findTasks,
+    find
 }
 
 function find(){

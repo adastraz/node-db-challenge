@@ -2,7 +2,7 @@ const express = require('express');
 
 const ProjectsRouter = require('./projects/project-router.js');
 const TasksRouter = require('./tasks/task-router.js');
-const ResourcesRouter = require('./tasks/resource-router.js');
+const ResourcesRouter = require('./resources/resource-router.js');
 
 const server = express();
 

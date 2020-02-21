@@ -55,17 +55,17 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
 
-  Tasks.remove(id)
+  Resources.remove(id)
   .then(deleted => {
       if (deleted) {
           res.json({ removed: deleted });
       } else {
-          res.status(404).json({ message: 'Could not find task with given id' });
+          res.status(404).json({ message: 'Could not find resource with given id' });
       }
   })
   .catch(err => {
       console.log(err)
-      res.status(500).json({ message: 'Failed to delete task' });
+      res.status(500).json({ message: 'Failed to delete resource' });
   });
 });
 

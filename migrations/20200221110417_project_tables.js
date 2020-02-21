@@ -5,13 +5,13 @@ exports.up = function(knex) {
             projects.increments()
             projects.text('name').notNullable
             projects.text('description')
-            projects.boolean('is_completed').deafaultTo(false)
+            projects.boolean('is_completed').defaultTo(false)
         })
-        .createTable('tasks', task => {
+        .createTable('tasks', tasks => {
             tasks.increments()
             tasks.text('description').notNullable()
             tasks.text('notes')
-            tasks.boolean('is_completed').deafaultTo(false)
+            tasks.boolean('is_completed').defaultTo(false)
             tasks.integer('project_id').unsigned().references('projects.id')
         })
         .createTable('recources', resources => {

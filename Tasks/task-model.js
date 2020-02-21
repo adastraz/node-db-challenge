@@ -3,7 +3,7 @@ const db = require('../data/db-config')
 module.exports = {
   findById,
   addResource,
-  findResource
+  findResources
 }
 
 function findById(id){
@@ -12,7 +12,7 @@ function findById(id){
         .first()
 }
 
-function findResource(taskId){
+function findResources(taskId){
     return db('resources')
         .join('tasks as t', 't.id', 'resources.task_id')
         .select('resources.*', 't.name as Task Name', 't.description as Task Description')

@@ -32,7 +32,24 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/', (req, res) => {
+router.get('/:id/tasks', (req, res) => {
+    const { id } = req.params;
+  
+    Projects.findTasks(id)
+    .then(tasks => {
+        if (tasks.length) {
+            res.json(tasks);
+        } else {
+            res.status(404).json({ message: 'Could not find tasks for given project' })
+        }
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({ message: 'Failed to get tasks' });
+    });
+  });
+
+router.post('/', validateProject, (req, res) => {
     Projects.add(req.body)
     .then(project => {
         res.status(201).json(project);
@@ -42,6 +59,26 @@ router.post('/', (req, res) => {
         res.status(500).json({ message: 'Failed to create new project' });
     });
 });
+
+router.post('/:id/tasks', (req, res) => {
+    const { id } = req.params; 
+  
+    Projects.findById(id)
+    .then(task => {
+      if (task) {
+        Projects.addTask(req.body, id)
+        .then(task => {
+          res.status(201).json(task);
+        })
+      } else {
+        res.status(404).json({ message: 'Could not find project with given id.' })
+      }
+    })
+    .catch (err => {
+        console.log(err)
+      res.status(500).json({ message: 'Failed to create new task' });
+    });
+  });
 
 router.put('/:id', (req, res) => {
     const { id } = req.params
@@ -79,5 +116,14 @@ router.delete('/:id', (req, res) => {
         res.status(500).json({ message: 'Failed to delete project' });
     });
 });
+
+function validateProject(req, res, next) {
+    console.log(`middleware validate project ${req.body.name}`)
+    if(!req.body.name){
+        res.status(400).json({ message: 'Project does not have a name' })
+    }else{
+      next()
+    }
+}
 
 module.exports = router;
